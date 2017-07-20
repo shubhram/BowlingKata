@@ -10,9 +10,10 @@ object Frame {
 
 
   val tmpBuffer = new ListBuffer[Int]
+  val maxBowlHit:Int = 10
+  val noOfTry:Int=2
   def getTotalStat2(l: List[Int]): List[Frame] = {
 
-    val maxBowlHit = 10
     val output: ListBuffer[Frame] = new ListBuffer[Frame]
     l.foreach(x => {
       if (x == maxBowlHit) {
@@ -30,13 +31,22 @@ object Frame {
   }
 
   def getFrame(b: Int): Frame = {
-    if (tmpBuffer.nonEmpty) {
-      val one = tmpBuffer.remove(0)
+
+    if (tmpBuffer.size==noOfTry-1) {
+
+      var sum=b
+      var count=0
+      for(count <-0 to noOfTry-2) {
+        sum=sum+tmpBuffer.remove(0)
+
+      }
+
       //println(tmpBuffer.nonEmpty)
-      Frame(one+ b)
+      Frame(sum)
 
     }
     else {
+
       tmpBuffer += b
       null
     }
