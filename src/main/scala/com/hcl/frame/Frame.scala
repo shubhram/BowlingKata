@@ -10,8 +10,8 @@ object Frame {
 
 
   val tmpBuffer = new ListBuffer[Int]
-  val maxBowlHit:Int = 10
-  val noOfTry:Int=2
+  val maxBowlHit = 10
+  val noOfTry = 2
   def getTotalStat2(l: List[Int]): List[Frame] = {
 
     val output: ListBuffer[Frame] = new ListBuffer[Frame]
