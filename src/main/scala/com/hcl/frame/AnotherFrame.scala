@@ -18,38 +18,34 @@ object Frames{
     }
   }
 
-  def apply(): Frames = {
-    Invalid(0)
-  }
-  val buffer:ListBuffer[Frames] =new ListBuffer[Frames]
-  def getFrameList(list:List[Int],index:Int): List[Frames] = {
 
-    if(index<list.size) {
+    val buffer: ListBuffer[Frames] = new ListBuffer[Frames]
 
-      list(index)==10 match {
-        case true=> {
-          buffer += this (list (index) )
-          getFrameList (list, index + 1)
-        }
-        case _=> {
-           if (index + 1 < list.size) {
-            buffer += this (list (index), list (index + 1) )
-            getFrameList (list, index + 2)
-           }
+    def getFrameList(list: List[Int], index: Int): List[Frames] = {
+
+      if (index < list.size) {
+
+        list(index) == 10 match {
+          case true => {
+            buffer += this (list(index))
+            getFrameList(list, index + 1)
+          }
+          case _ => {
+            if (index + 1 < list.size) {
+              buffer += this (list(index), list(index + 1))
+              getFrameList(list, index + 2)
+            }
+          }
         }
       }
+      buffer.toList
+      //    }
+      //    return null
     }
 
-
-      buffer.toList
-//    }
-//    return null
-  }
 }
 
-case class Invalid(i:Int) extends Frames {
-  override def score(): Int = ???
-}
+
 case class Strike(i:Int) extends Frames {
   override def score(): Int = i
 }
@@ -71,5 +67,5 @@ object Mainsss extends App{
 //
 //    println(list(i))
 //  }
-  println(Frames.getFrameList(List(5,6,10,9,0),0))
+  println(Frames.getFrameList(List(5,6,10,5,5,9,0),0))
 }
